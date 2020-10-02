@@ -4,4 +4,8 @@ const router = Router();
 
 router.get('/pessoas', PessoaController.listar);
 router.get('/pessoas/:id', PessoaController.findById);
+router.post('/pessoas', PessoaController.create);
+router.put('/pessoas/:id', PessoaController.update);
+router.delete('/pessoas/:id', PessoaController.delete);
+
 module.exports = router;

@@ -1,3 +1,4 @@
+const e = require('express');
 const database = require('../models');
 
 class PessoaController{ 
@@ -5,8 +6,8 @@ class PessoaController{
         try{
             const listar = await database.Pessoas.findAll();
             return response.status(200).json(listar);
-        }catch(e){
-            return response.status(500).json({ message: e.message});
+        }catch(error){
+            return response.status(500).json({ message: error.message});
         }
     }
 
@@ -17,7 +18,45 @@ class PessoaController{
             const umaPessoa = await database.Pessoas.findOne( {where: {id: Number(id)}} );
             return response.status(200).json(umaPessoa);
         } catch(error) {
-            return response.status(500).json({ message: e.message});
+            return response.status(500).json({ message: error.message});
+        }
+    }
+
+    static async create(request, response) {
+        const pessoa = request.body;
+
+        try{
+            const novaPessoa = await database.Pessoas.create(pessoa);
+            return response.status(200).json(novaPessoa);
+        }catch(error){
+            return response.status(500).json({ message: error.message});
+        }
+    }
+
+    static async update(request, response) {
+        const { id } = request.params;
+        const novasInfos = request.body;
+
+        try{
+            // o método update retorna zero ou 1
+            await database.Pessoas.update(novasInfos, { where: {id : Number(id)} })
+            const pessoaAtualizada = await database.Pessoas.findOne( {where: {id: Number(id)}});
+
+            return response.status(200).json(pessoaAtualizada);
+        }catch(error){
+            return response.status(500).json( { message: error.message} );
+        }
+    }
+
+    static async delete(request, response) {
+        const { id } = request.params;
+        console.log(request.params);
+
+        try{
+            await database.Pessoas.destroy( {where: {id: Number(id) }});
+            return response.status(200).json({message: "deletado com sucesso!"});
+        }catch(error){
+            return response.status(500).json( { message: error.message} );
         }
     }
 }
