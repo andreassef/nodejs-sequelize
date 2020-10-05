@@ -59,6 +59,34 @@ class PessoaController{
             return response.status(500).json( { message: error.message} );
         }
     }
+
+    static async findRegistry(request, response) {
+        const { estudanteId, matriculaId } = request.params;
+        try{
+            const registration = await database.Matriculas.findOne( { 
+                where: {
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId)
+                } } );
+                    
+            return response.status(200).json(registration);
+        }catch(erro) {
+            return response.status(500).json({message: erro.message});
+        }
+    }
+
+    static async createNewRegistry(request, response) {
+        const { estudanteId } = req.params;
+        const newRegistry = {...req.body, estudandeId: Number(estudanteId)};
+
+        try{
+            const createNewRegistry = await database.Matriculas.create(newRegistry);
+            return response.status(200).json(createNewRegistry);
+        }catch(erro){
+            return response.status(500).json({message: erro.message});
+        }
+
+    }
 }
 
 module.exports = PessoaController;

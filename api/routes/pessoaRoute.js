@@ -7,5 +7,7 @@ router.get('/pessoas/:id', PessoaController.findById);
 router.post('/pessoas', PessoaController.create);
 router.put('/pessoas/:id', PessoaController.update);
 router.delete('/pessoas/:id', PessoaController.delete);
+router.get('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.findRegistry);
+router.post('/pessoas/:estudanteId/matricula', PessoaController.createNewRegistry);
 
 module.exports = router;
