@@ -1,45 +1,60 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-     await queryInterface.bulkInsert('Pessoas', [
-       {
-       nome: 'John Doe',
-       ativo: true,
-       email: 'johndoe@yahoo.com',
-       role: 'docente',
-       createdAt: new Date(),
-       updatedAt: new Date(),
-     },
-     {
-      nome: 'André Lucas',
-      ativo: true,
-      email: 'andrelucas@gmail.com',
-      role: 'estudante',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      nome: 'Marcio',
-      ativo: true,
-      email: 'marcio@yahoo.com',
-      role: 'docente',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      nome: 'Andreia',
-      ativo: true,
-      email: 'andreia@yahoo.com',
-      role: 'estudante',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }
-
-    ], {});
+  up: (queryInterface, Sequelize) => {
+		return queryInterface.bulkInsert('Pessoas', [
+			{
+				nome: 'Ana Souza',
+				ativo: true,
+				email: 'ana@ana.com',
+				role: 'estudante',
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				nome: 'Marcos Cintra',
+				ativo: true,
+				email: 'marcos@marcos.com',
+				role: 'estudante',
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				nome: 'Felipe Cardoso',
+				ativo: true,
+				email: 'felipe@felipe.com',
+				role: 'estudante',
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				nome: 'Sandra Gomes',
+				ativo: false,
+				email: 'sandra@sandra.com',
+				role: 'estudante',
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				nome: 'Paula Morais',
+				ativo: true,
+				email: 'paula@paula.com',
+				role: 'docente',
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				nome: 'Sergio Lopes',
+				ativo: true,
+				email: 'sergio@sergio.com',
+				role: 'docente',
+				createdAt: new Date(),
+				updatedAt: new Date()
+			}
+	], {})
   },
 
-  down: async (queryInterface, Sequelize) => {
-     await queryInterface.bulkDelete('Pessoas', null, {});
+  down: (queryInterface, Sequelize) => {
+		return queryInterface.bulkDelete('Pessoas', null, {})
   }
-};
+}

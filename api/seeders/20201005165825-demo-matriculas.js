@@ -1,9 +1,10 @@
+'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
 		return queryInterface.bulkInsert('Matriculas', [
 			{
 				status: "confirmado",
-				estudante_id: 1,
+				estudante_id: 2,
 				turma_id: 1,
 				createdAt: new Date(),
 				updatedAt: new Date()
@@ -17,7 +18,7 @@ module.exports = {
 	},
 		{
 			status: "confirmado",
-			estudante_id: 3,
+			estudante_id: 5,
 			turma_id: 2,
 			createdAt: new Date(),
 			updatedAt: new Date()
@@ -31,7 +32,7 @@ module.exports = {
 	},
 		{
 			status: "cancelado",
-			estudante_id: 1,
+			estudante_id: 3,
 			turma_id: 2,
 			createdAt: new Date(),
 			updatedAt: new Date()
