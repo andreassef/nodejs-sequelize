@@ -87,6 +87,31 @@ class PessoaController{
         }
 
     }
+
+    static async updateRegistry(request, response) {
+        const { estudanteId, matriculaId } = request.params;
+        const novasInfos = request.body;
+
+        try{
+            // o método update retorna zero ou 1
+            await database.Matriculas.update(novasInfos, { where: {id : Number(matriculaId), estudante_id: Number(estudanteId)} })
+            const matriculaAtualizada = await database.Matriculas.findOne( {where: {id: Number(matriculaId)}});
+            return response.status(200).json(matriculaAtualizada);
+        }catch(error){
+            return response.status(500).json( { message: error.message} );
+        }
+    }
+
+    static async deleteRegistry(request, response) {
+        const { estudanteId, matriculaId } = request.params;
+
+        try{
+            await database.Matriculas.destroy( {where: {id: Number(matriculaId) }});
+            return response.status(200).json({message: "deletado com sucesso!"});
+        }catch(error){
+            return response.status(500).json( { message: error.message} );
+        }
+    }
 }
 
 module.exports = PessoaController;
