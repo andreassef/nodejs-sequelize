@@ -60,6 +60,16 @@ class PessoaController{
         }
     }
 
+    static async restorePeople( request, response ) {
+        const { id } = request.params;
+        try{
+            await database.Pessoas.restore( {where: {id: Number(id) } } );
+            return response.status(200).json( {message: `id ${id} restored!`});
+        } catch(error) {
+            return response.status(500).json( { erro: error.message } )
+        }
+    }
+
     static async findRegistry(request, response) {
         const { estudanteId, matriculaId } = request.params;
         try{

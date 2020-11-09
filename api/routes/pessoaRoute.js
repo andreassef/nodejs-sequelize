@@ -11,5 +11,6 @@ router.get('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.find
 router.post('/pessoas/:estudanteId/matricula', PessoaController.createNewRegistry);
 router.put('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.updateRegistry);
 router.delete('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.deleteRegistry);
+router.post('/pessoas/:id/restaura', PessoaController.restorePeople)
 
 module.exports = router;
