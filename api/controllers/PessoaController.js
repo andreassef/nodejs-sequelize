@@ -11,6 +11,16 @@ class PessoaController{
         }
     }
 
+    static async listActivatePeoples(request, response) {
+        try {
+            const listAll = await database.Pessoas.scope('todos').findAll();
+            return response.status(200).json(listAll);
+            
+        } catch (error) {
+            return response.status(500).json({ message: error.message});
+        }
+    }
+
     static async findById(request, response) {
         const { id } = request.params;
 
